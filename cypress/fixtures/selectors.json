@@ -1,5 +1,9 @@
-[{
+[
+{
   "title": ".page-header__title"
-
+},
+{
+   "email": "[name='email']"
 }
 ]
+

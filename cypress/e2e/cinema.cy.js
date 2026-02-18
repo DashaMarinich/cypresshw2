@@ -1,20 +1,43 @@
+describe('Main Page Test', () => {
+  let selectors;
+
+  beforeEach(() => {
+      cy.fixture('selectors').then((data) => {
+      selectors = data;
+    });
+
+     cy.visit('/');
+
+  });
+
+
 it("Should open the main page", () => {
- cy.visit('/');
- cy.contains('кино').should("be.visible");
+cy.contains('кино').should("be.visible");
 });
 
-const selector = require('../fixtures/selectors.json');
 
 it("Should open the main page2", () => {
- cy.visit('/');
- cy.get('.page-header__title').contains("кино");
+cy.get(selectors.title).should('be.visible').and('contain', 'Expected Title'); 
+  });
  });
 
 
 
+describe('Admin login', () => {
+  let selectors;
+
+  beforeEach(() => {
+      cy.fixture('selectors').then((data) => {
+      selectors = data;
+    });
+    
+    cy.visit('http://qamid.tmweb.ru/admin');
+
+    });
+
+
 it("Positive login admin", () => {
- cy.visit('http://qamid.tmweb.ru/admin');
- cy.get('[name="email"]').type("qamid@qamid.ru");
+ cy.get(selectors.email).type("qamid@qamid.ru");
  cy.get('[name="password"]').type("qamid");
  cy.get('.login__button').click();
  cy.contains("Администраторррская").should('be.visible');
@@ -22,7 +45,6 @@ it("Positive login admin", () => {
 });
 
 it("Booking a ticket", () => {
- cy.visit('http://qamid.tmweb.ru/admin');
  cy.get('[name="email"]').type("qamid@qamid.ru");
  cy.get('[name="password"]').type("qamid");
  cy.get('.login__button').click();
@@ -38,6 +60,7 @@ it("Booking a ticket", () => {
 
 
  });
+  });
 
 
 
