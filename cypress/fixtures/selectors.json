@@ -4,6 +4,31 @@
 },
 {
    "email": "[name='email']"
+},
+
+{
+  "password": "[name='password']"
+},
+
+{
+  "button": ".login__button"
+},
+
+{
+  "selectedMovie": "[draggable='true'][data-film-id='131'] > .conf-step__movie-title"
+},
+
+{
+  "movie": ":nth-child(3) > .movie__info > .movie__description > .movie__title"
+},
+
+{
+  "dataSeance": "[data-seance-id='225']"
+},
+
+{
+  "acceptinButton": ".acceptin-button"
 }
+
 ]
 

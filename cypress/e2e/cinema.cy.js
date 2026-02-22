@@ -1,66 +1,47 @@
-describe('Main Page Test', () => {
-  let selectors;
 
-  beforeEach(() => {
-      cy.fixture('selectors').then((data) => {
-      selectors = data;
-    });
-
-     cy.visit('/');
-
-  });
 
 
 it("Should open the main page", () => {
-cy.contains('кино').should("be.visible");
+ cy.visit('/');
+ cy.contains('кино').should("be.visible");
+});
+
+const selectors = require('../fixtures/selectors.json');
+
+it("Should open the main page2", async () => {
+  const selectors = await cy.fixture('selectors');
+  cy.visit('/');
+  cy.get(selectors.title).should('be.visible').and('contain', 'кино');
 });
 
 
-it("Should open the main page2", () => {
-cy.get(selectors.title).should('be.visible').and('contain', 'Expected Title'); 
-  });
- });
-
-
-
-describe('Admin login', () => {
-  let selectors;
-
-  beforeEach(() => {
-      cy.fixture('selectors').then((data) => {
-      selectors = data;
-    });
-    
-    cy.visit('http://qamid.tmweb.ru/admin');
-
-    });
-
-
-it("Positive login admin", () => {
+it("Positive login admin", async () => {
+const selectors = await cy.fixture('selectors');
+ cy.visit('http://qamid.tmweb.ru/admin');
  cy.get(selectors.email).type("qamid@qamid.ru");
- cy.get('[name="password"]').type("qamid");
- cy.get('.login__button').click();
+ cy.get(selectors.password).type("qamid");
+ cy.get(selectors.button).click();
  cy.contains("Администраторррская").should('be.visible');
 
 });
 
-it("Booking a ticket", () => {
- cy.get('[name="email"]').type("qamid@qamid.ru");
- cy.get('[name="password"]').type("qamid");
- cy.get('.login__button').click();
- cy.get('[draggable="true"][data-film-id="131"] > .conf-step__movie-title').then(($el) => $el.textContent).should('have.text','Ведьмак');
- cy.get('[draggable="true"][data-film-id="131"] > .conf-step__movie-title').invoke('text').then((text) => {
+it("Booking a ticket", async () => {
+ const selectors = await cy.fixture('selectors');
+ cy.visit('http://qamid.tmweb.ru/admin');
+ cy.get(selectors.email).type("qamid@qamid.ru");
+ cy.get(selectors.password).type("qamid");
+ cy.get(selectors.button).click();
+ cy.get(selectors.selectedMovie).then(($el) => $el.textContent).should('have.text','Ведьмак');
+ cy.get(selectors.selectedMovie).invoke('text').then((text) => {
     cy.visit('/');
-    cy.get(':nth-child(3) > .movie__info > .movie__description > .movie__title').should('have.text', text);
-    cy.get('[data-seance-id="225"]').click();
+    cy.get(selectors.movie).should('have.text', text);
+    cy.get(selectors.dataSeance).click();
     cy.get('.buying-scheme__wrapper > :nth-child(7) > :nth-child(5)').click();
-    cy.get('.acceptin-button').click();
+    cy.get(selectors.acceptinButton).click();
     cy.contains("Вы выбрали билеты").should('be.visible');
  })
 
-
  });
-  });
 
 
 
