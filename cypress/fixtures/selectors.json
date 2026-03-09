@@ -1,34 +1,21 @@
-[
-{
-  "title": ".page-header__title"
-},
-{
-   "email": "[name='email']"
-},
 
 {
-  "password": "[name='password']"
-},
+  "title": ".page-header__title",
 
-{
-  "button": ".login__button"
-},
+   "email": "[name='email']",
 
-{
-  "selectedMovie": "[draggable='true'][data-film-id='131'] > .conf-step__movie-title"
-},
+  "password": "[name='password']",
 
-{
-  "movie": ":nth-child(3) > .movie__info > .movie__description > .movie__title"
-},
+  "button": ".login__button",
 
-{
-  "dataSeance": "[data-seance-id='225']"
-},
+  "selectedMovie": "[draggable='true'][data-film-id='131'] > .conf-step__movie-title",
 
-{
+  "movie": ":nth-child(3) > .movie__info > .movie__description > .movie__title",
+
+  "dataSeance": "[data-seance-id='225']",
+
   "acceptinButton": ".acceptin-button"
 }
 
-]
+
 
